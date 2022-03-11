@@ -1,1 +1,25 @@
 
+import { Observable } from 'rxjs';
+
+const func = new Observable((subscriber) => {
+  console.log('Hello');
+  subscriber.next(100);
+  subscriber.next(200);
+  setTimeout(() => {
+    subscriber.next(300);
+  }, 1000);
+  subscriber.next(400);
+  // subscriber.error('there is an error');
+  subscriber.complete();
+});
+
+const observer = {
+  next: (x: string) => console.log('Observer got a next value: ' + x),
+  error: (err: string) => console.error('Observer got an error: ' + err),
+  complete: () => console.log('Observer got a complete notification'),
+};
+
+func.subscribe(observer);
+
+//here in above example if error occur so the further process will stopped.
+//if there is any error occur so Observable will not be completed
