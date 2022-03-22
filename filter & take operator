@@ -1,0 +1,19 @@
+import { from, interval } from 'rxjs';
+import { filter, take } from 'rxjs/operators';
+
+
+//range operator
+// const num = range(1, 5);
+// num.subscribe((x) => console.log(x));
+
+//filter operator
+//emit (1,2,3,4,5)
+// const source = from([1, 2, 3, 4, 5]);
+// //filter out non-even numbers
+// const example = source.pipe(filter((num) => num % 2 === 0));
+// example.subscribe((value) => console.log(`Even number: ${value}`));
+
+//interval and take operator
+const intervalCount = interval(1000);
+const takeFive = intervalCount.pipe(take(5));
+takeFive.subscribe((x) => console.log(x));
